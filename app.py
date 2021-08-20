@@ -19,7 +19,9 @@ passenger_counter = st.text_input("Nombre de passagers ?","1")
 
 url = 'https://apitaxi-gnqszluqma-ew.a.run.app/predict'
 
-params = {
+if st.button('click me'):
+    # print is visible in server output, not in the page
+    params = {
     "pickup_datetime": date_time,
     "pickup_longitude": float(pickup_longitude),
     "pickup_latitude": float(pickup_latitude),
@@ -28,6 +30,6 @@ params = {
     "passenger_count": int(passenger_counter)}
 
 
-response = requests.get(url, params=params)
-
-st.write('## Et tu te fais donc plumer de :', f'{round(response.json()["prediction"],1)} $')
+    response = requests.get(url, params=params)
+    st.write('## Et tu te fais donc plumer de :',
+             f'{round(response.json()["prediction"],1)} $')
